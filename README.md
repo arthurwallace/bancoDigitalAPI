@@ -5,7 +5,6 @@ API desenvolvida em .NET 6 com GraphQL para simular operações bancárias como 
 ## Requisitos
 
 - .NET 6 SDK ou superior
-- PostgreSQL
 
 ## Configuração
 
@@ -22,46 +21,57 @@ A API estará disponível em `http://localhost:5000/graphql`.
 ## Operações
 
 A API permite as seguintes operações:
-
-- `saque`: realiza o saque de um valor da conta informada. Retorna o saldo atualizado ou uma mensagem de erro caso o saque não seja possível.
-- `deposito`: realiza o depósito de um valor na conta informada. Retorna o saldo atualizado.
-- `saldo`: consulta o saldo atual da conta informada.
+- `criar`: cria uma nova conta.
+- `sacar`: realiza o saque de um valor da conta informada. Retorna o saldo atualizado ou uma mensagem de erro caso o saque não seja possível.
+- `depositar`: realiza o depósito de um valor na conta informada. Retorna o saldo atualizado.
+- `conta`: consulta os dados atuais da conta informada.
 
 ## Exemplo de uso
 
 ### Saque
 
-Para realizar um saque, envie uma mutação com a operação `saque`, informando o número da conta e o valor a ser sacado:
+Para realizar um saque, envie uma mutação com a operação `sacar`, informando o número da conta e o valor a ser sacado:
 
 ```
-mutation {
-saque(numeroConta: 12345, valor: 50) {
-saldo
-}
+mutation sacar {
+  sacar (numeroConta: 43027, valor: 2) {
+    numeroConta
+    saldo
+  }
 }
 ```
 
 
 ### Depósito
 
-Para realizar um depósito, envie uma mutação com a operação `deposito`, informando o número da conta e o valor a ser depositado:
+Para realizar um depósito, envie uma mutação com a operação `depositar`, informando o número da conta e o valor a ser depositado:
 
 ```
-mutation {
-deposito(numeroConta: 12345, valor: 100) {
-saldo
+mutation depositar {
+  depositar (numeroConta: 43027, valor: 200.50) {
+    numeroConta
+    saldo
+  }
 }
-}
 ```
 
 
-### Saldo
+### Conta
 
-Para consultar o saldo de uma conta, envie uma query com a operação `saldo`, informando o número da conta:
+Para consultar os dados de uma conta, envie uma query com a operação `conta`, informando o número da conta:
 
 ```
-query {
-saldo(numeroConta: 12345)
+query conta {
+  conta(numeroConta: 43027) {
+    id
+    numeroConta
+    saldo
+    movimentacoes {
+      valor
+      dataMovimentacao
+      descricao
+    }
+  }
 }
 ```
 
