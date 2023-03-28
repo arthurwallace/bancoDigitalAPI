@@ -17,9 +17,9 @@ namespace bancodigital_api.Data.Repositories
             return _context.Contas.Include(o => o.movimentacoes).ToList();
         }
 
-        public Conta GetConta(int conta)
+        public Conta GetConta(int numeroConta)
         {
-            return _context.Contas.FirstOrDefault(c => c.numeroConta == conta);
+            return _context.Contas.Include(o => o.movimentacoes).FirstOrDefault(c => c.numeroConta == numeroConta);
         }
         public Conta CriarConta()
         {

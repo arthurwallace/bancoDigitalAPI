@@ -16,15 +16,14 @@ namespace bancodigital_api.GraphQl.queries
             return contaRepository.GetContas().AsQueryable();
         }
 
-        public Conta GetConta(int id, [Service] IContaRepository contaRepository)
+        public Conta GetConta(int numeroConta, [Service] IContaRepository contaRepository)
         {
-            Console.Write("Aq");
-            return contaRepository.GetConta(id);
+            return contaRepository.GetConta(numeroConta);
         }
 
-        public decimal GetSaldo(int id, [Service] IContaRepository contaRepository)
+        public decimal GetSaldo(int numeroConta, [Service] IContaRepository contaRepository)
         {
-            var conta = contaRepository.GetConta(id);
+            var conta = contaRepository.GetConta(numeroConta);
             return conta.saldo;
         }
     }
