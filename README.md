@@ -28,6 +28,25 @@ A API permite as seguintes operações:
 
 ## Exemplo de uso
 
+### Criar Conta
+
+Para criar uma nova conta, envie uma mutação com a operação `criar`
+
+```
+mutation criarConta {
+  criar {
+    id,
+    numeroConta,
+    saldo,
+    movimentacoes {
+      id
+      valor
+    }
+  }
+}
+```
+
+
 ### Saque
 
 Para realizar um saque, envie uma mutação com a operação `sacar`, informando o número da conta e o valor a ser sacado:
